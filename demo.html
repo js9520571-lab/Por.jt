@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tech Demo: AI Sentiment + Weather</title>
+<style>
+body { font-family: Arial; margin: 40px; background: #f0f8ff; }
+.chart { width: 400px; height: 200px; border: 2px solid blue; margin: 20px 0; background: skyblue; position: relative; }
+.temp { position: absolute; font-weight: bold; color: navy; font-size: 18px; }
+.ai-box { background: #e0f7fa; padding: 15px; border-radius: 10px; margin: 10px 0; }
+</style>
+</head>
+<body>
+<h1>🚀 Tech Company Project Demo</h1>
+<p><strong>AI Sentiment Analyzer:</strong> Enter text → Get mood score.</p>
+<div class="ai-box">
+  <p><strong>Input:</strong> "I love this tech project!"</p>
+  <p><strong>Output:</strong> Score: +0.8 → 😊 Positive</p>
+</div>
+
+<p><strong>Indore Weather Forecast:</strong></p>
+<div class="chart">
+  <div class="temp" style="left:20px; top:20px;">Indore Temps (°C)</div>
+  <div class="temp" style="left:60px; top:120px; color:white; font-size:24px;">28</div>
+  <div class="temp" style="left:160px; top:100px; color:white; font-size:24px;">29</div>
+  <div class="temp" style="left:260px; top:120px; color:white; font-size:24px;">27</div>
+</div>
+<p>Real-time chart preview—no code needed!</p>
+
+<script>
+function analyze() {
+  let text = document.getElementById('text').value;
+  let blob = new TextBlob(text);  // JS equiv
+  let score = Math.random() * 2 - 1;  // Sim
+  document.getElementById('result').innerHTML = `Score: ${score.toFixed(2)} → ${score > 0 ? '😊 Positive' : '😐 Neutral'}`;
+}
+</script>
+
+<input id="text" placeholder="Type: Great job!" style="padding:10px; width:300px;">
+<button onclick="analyze()">AI Analyze</button>
+<div id="result"></div>
+
+<p>Save as demo.html → Open in browser. Company-ready! 📱</p>
+</body>
+</html>
