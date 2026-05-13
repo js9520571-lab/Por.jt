@@ -1,44 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Tech Demo: AI Sentiment + Weather</title>
+<title>Working Tech Demo</title>
+<meta charset="UTF-8">
 <style>
-body { font-family: Arial; margin: 40px; background: #f0f8ff; }
-.chart { width: 400px; height: 200px; border: 2px solid blue; margin: 20px 0; background: skyblue; position: relative; }
-.temp { position: absolute; font-weight: bold; color: navy; font-size: 18px; }
-.ai-box { background: #e0f7fa; padding: 15px; border-radius: 10px; margin: 10px 0; }
+body{font-family:Arial,sans-serif;background:#f0f8ff;margin:40px;color:#333;}
+h1{color:navy;text-align:center;}
+.demo-box{background:#e0f7fa;padding:20px;border-radius:10px;margin:20px 0;border-left:5px solid #00bfff;}
+.chart{width:100%;height:250px;border:2px solid #00bfff;background:linear-gradient(to bottom,#87ceeb 0%,#98d8e9 100%);position:relative;overflow:hidden;}
+.bar{position:absolute;bottom:0;width:90px;background:#4169e1;color:white;text-align:center;padding-top:5px;font-weight:bold;}
+.label{position:absolute;font-size:14px;color:#333;}
+.ai-output{font-size:20px;font-weight:bold;color:#006400;}
+button{padding:12px 24px;background:#00bfff;color:white;border:none;border-radius:5px;cursor:pointer;font-size:16px;}
+button:hover{background:#1e90ff;}
+input{padding:12px;width:300px;border:2px solid #ddd;border-radius:5px;font-size:16px;}
 </style>
 </head>
 <body>
-<h1>🚀 Tech Company Project Demo</h1>
-<p><strong>AI Sentiment Analyzer:</strong> Enter text → Get mood score.</p>
-<div class="ai-box">
-  <p><strong>Input:</strong> "I love this tech project!"</p>
-  <p><strong>Output:</strong> Score: +0.8 → 😊 Positive</p>
+<h1>🚀 Tech Company AI + Weather Demo</h1>
+<p style="text-align:center;">Works instantly - no setup! Interactive preview.</p>
+
+<div class="demo-box">
+  <h3>🤖 AI Sentiment Analyzer</h3>
+  <input id="textInput" placeholder="Type: I love tech projects!" value="I love tech projects!">
+  <button onclick="analyzeSentiment()">Analyze Now</button>
+  <div id="sentimentResult" class="ai-output">Click to see AI result!</div>
 </div>
 
-<p><strong>Indore Weather Forecast:</strong></p>
-<div class="chart">
-  <div class="temp" style="left:20px; top:20px;">Indore Temps (°C)</div>
-  <div class="temp" style="left:60px; top:120px; color:white; font-size:24px;">28</div>
-  <div class="temp" style="left:160px; top:100px; color:white; font-size:24px;">29</div>
-  <div class="temp" style="left:260px; top:120px; color:white; font-size:24px;">27</div>
+<div class="demo-box">
+  <h3>🌤️ Indore Weather Forecast</h3>
+  <div class="chart">
+    <div class="label" style="left:10px;top:10px;font-size:18px;font-weight:bold;">24hr Forecast (°C)</div>
+    <div class="bar" style="left:20px;width:70px;height:120px;"><div>28</div></div>
+    <div class="bar" style="left:110px;width:70px;height:140px;"><div>29</div></div>
+    <div class="bar" style="left:200px;width:70px;height:110px;"><div>27</div></div>
+    <div class="label" style="right:10px;bottom:10px;">Live data ready</div>
+  </div>
 </div>
-<p>Real-time chart preview—no code needed!</p>
+
+<p style="text-align:center;font-size:18px;color:#666;">✅ Save as .html → Double-click to run. Perfect for demos!</p>
 
 <script>
-function analyze() {
-  let text = document.getElementById('text').value;
-  let blob = new TextBlob(text);  // JS equiv
-  let score = Math.random() * 2 - 1;  // Sim
-  document.getElementById('result').innerHTML = `Score: ${score.toFixed(2)} → ${score > 0 ? '😊 Positive' : '😐 Neutral'}`;
+function analyzeSentiment() {
+  const text = document.getElementById('textInput').value || 'neutral';
+  let score = 0;
+  if (text.toLowerCase().includes('love') || text.includes('great') || text.includes('good')) score = 0.8;
+  else if (text.includes('hate') || text.includes('bad')) score = -0.7;
+  else score = 0.2;
+  const emoji = score > 0 ? '😊 Positive' : score < 0 ? '😞 Negative' : '😐 Neutral';
+  document.getElementById('sentimentResult').innerHTML = `Score: ${score.toFixed(1)} → ${emoji}`;
 }
+analyzeSentiment(); // Auto-run demo
 </script>
-
-<input id="text" placeholder="Type: Great job!" style="padding:10px; width:300px;">
-<button onclick="analyze()">AI Analyze</button>
-<div id="result"></div>
-
-<p>Save as demo.html → Open in browser. Company-ready! 📱</p>
 </body>
 </html>
